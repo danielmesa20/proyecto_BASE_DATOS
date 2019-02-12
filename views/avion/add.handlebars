@@ -1,0 +1,31 @@
+<section id="add" class="container">
+  <div class="form-wrap">
+      <h1>Agregar un avión</h1>
+      {{#each errors}}
+        <div class="error">
+          <p>{{text}}</p>
+        </div>
+      {{/each}}
+
+    <form action="/aviones/add" method="POST">
+        <div class="input-group">
+            <label for="numero_avion">Número del avión</label>
+            <input type="number" name="numero_avion" id="numero_avion" class="input-box" placeholder="Ejemplo: 00001" maxlength="11"  value={{numero_avion}}>
+        </div>
+        <div class="input-group">
+            <label for="fabricante">Fabricante del avión</label>
+            <input type="text" name="fabricante" id="fabricante" class="input-box" placeholder="Ejemplo: Airbus, EADS, Boeing" maxlength="256"  value={{fabricante}}>
+        </div>
+        <div class="input-group">
+            <label for="modelo">Modelo del avión</label>
+            <input type="text" name="modelo" id="modelo" class="input-box" placeholder="Ejemplo: Tu-204, A320, CRJ200" maxlength="256" value={{modelo}}>
+        </div>
+        <div class="input-group">
+            <label for="velocidad_max">Velocidad Máxima (Km/h)</label>
+            <input type="number" name="velocidad_max" id="velocidad_max" class="input-box" placeholder="Ejemplo: 300" value={{velocidad_max}}>
+        </div>
+
+        <input type="submit" value="Add avion" class="btn btn-reverse">
+    </form>
+  </div>
+</section>

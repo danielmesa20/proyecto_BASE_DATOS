@@ -1,0 +1,21 @@
+<section id="aviones" class="container">
+    <h1>Todos los aviones</h1>
+
+    {{#each aviones}}
+        <div class="avion">
+            <h3> Numero de avión: {{numero_avion}}</h3>
+            <p> fabricante: {{fabricante}}</p>
+            <ul>
+                <li>Modelo: {{modelo}}</li>
+                <!--<li><a href="mailto:{{contact_email}}" class="btn btn-reverse">Apply Now</a></li>-->
+            </ul>
+            <div class="velocidad_maxima">
+                <p>Velocidad máxima: {{velocidad_max}}</p>
+            </div>
+        </div>
+
+    {{else}}
+      <p>No hay aviones registrados</p>
+    {{/each}}
+    
+  </section>
