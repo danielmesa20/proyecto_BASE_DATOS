@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static(path.join(__dirname,'public')));
 
 //Index route
-app.get('/', (req,res) => res.render('index', {layout: 'landing'}));
+app.get('/', (req,res) => res.render('paginaPrincipal', {layout: 'landing'}));
 
 //Routes Aviones
 app.use('/aviones', require('./routes/aviones'));
