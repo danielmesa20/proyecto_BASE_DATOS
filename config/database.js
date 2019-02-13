@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+/*const Sequelize = require('sequelize');
 module. exports = new Sequelize('aeropuerto', 'root', 'password', {
   host: 'localhost',
   dialect: 'mysql',
@@ -12,8 +12,8 @@ module. exports = new Sequelize('aeropuerto', 'root', 'password', {
   },
 
 });
+*/
 
-/*
 const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 
@@ -29,4 +29,4 @@ const sequelize = new Sequelize(DATABASE, DB_USER, DB_PASSWORD, {
   }
 });
 
-module.exports = sequelize; */
+module.exports = sequelize; 

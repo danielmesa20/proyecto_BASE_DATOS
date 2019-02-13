@@ -2,8 +2,7 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const path = require('path');
-//require("dotenv").config({ path: "./variables.env" }); //
-//const sequelize = require("./config/database"); //
+require("dotenv").config({ path: "./variables.env" }); 
 
 // Database
 const db = require('./config/database.js');
