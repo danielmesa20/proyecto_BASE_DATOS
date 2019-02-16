@@ -1,0 +1,18 @@
+<section id="add" class="container">
+  <div class="form-wrap">
+      <h1>Buscar un avión</h1>
+      {{#each errors}}
+        <div class="error">
+          <p>{{text}}</p>
+        </div>
+      {{/each}}
+
+    <form action="/aviones/buscar" method="POST">
+        <div class="input-group">
+            <label for="numero_avion">Número del avión</label>
+            <input type="number" name="numero_avion" id="numero_avion" class="input-box" placeholder="Ejemplo: 00001" maxlength="11"  value={{numero_avion}}>
+        </div>
+        <input type="submit" value="buscar avion" class="btn btn-reverse">
+    </form>
+  </div>
+</section>

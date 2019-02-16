@@ -15,7 +15,10 @@ const Avion = db.define('aviones', {
     },
     velocidad_max:{
         type: Sequelize.INTEGER
+    },
+    eliminado:{
+        type: Sequelize.INTEGER
     }
-})
+});
 
 module.exports = Avion

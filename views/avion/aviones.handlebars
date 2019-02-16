@@ -7,15 +7,17 @@
             <p> fabricante: {{fabricante}}</p>
             <ul>
                 <li>Modelo: {{modelo}}</li>
-                <!--<li><a href="mailto:{{contact_email}}" class="btn btn-reverse">Apply Now</a></li>-->
             </ul>
             <div class="velocidad_maxima">
                 <p>Velocidad máxima: {{velocidad_max}}</p>
             </div>
+           <a href="/aviones/delete/{{numero_avion}}" class="btn btn-danger"> Eliminar avión</a>
+           <a href="/aviones/edit/{{numero_avion}}" class="btn btn-secondary"> Editar avión</a>
         </div>
 
     {{else}}
       <p>No hay aviones registrados</p>
+       <a href="/aviones/add" class="btn btn-danger"> Agregar un avión</a>
     {{/each}}
     
   </section>
