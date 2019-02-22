@@ -8,17 +8,21 @@ const Avion = db.define('aviones', {
         primaryKey: true
     },
     fabricante:{
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     },
     modelo:{
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     },
     velocidad_max:{
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
     },
     eliminado:{
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
     }
 });
 
-module.exports = Avion
+module.exports = Avion;

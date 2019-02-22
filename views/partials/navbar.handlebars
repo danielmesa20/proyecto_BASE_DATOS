@@ -1,17 +1,29 @@
-<h3><a href="/"><i class="fas fa-code"></i>Aeropuerto</a></h2>
-      <nav>
-        <ul>
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/aviones">Todos los Aviones</a>
-          </li>
-          <li>
-            <a href="/aviones/add">Agregar un Avión</a>
-          </li>
-          <li>
-            <a href="/aviones/buscar">Buscar un Avión</a>
-          </li>
-        </ul>
-      </nav>
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">Aeropuerto</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Vuelos</a>
+      </li>
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Aviones
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/aviones">Mostrar aviones</a>
+          <a class="dropdown-item" href="/aviones/add">Añadir avión</a>
+          <a class="dropdown-item" href="/aviones/buscar">Buscar Avión</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

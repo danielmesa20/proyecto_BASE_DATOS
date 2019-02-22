@@ -6,23 +6,24 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 //GET aviones list (localhost:8080/aviones)
-router.get('/', (req, res) =>  
-    Avion.findAll({
+
+//Mostrar todos los aviones
+router.get('/', async  (req, res) =>  {
+
+    let aviones = await Avion.findAll({
         where:  {
             eliminado: 0
         }
-    })
-    .then(aviones => res.render('avion/aviones', {
-          aviones
-      }))
-    .catch(err => console.log(err)));
-
+    });
+        
+    res.render('avion/aviones', {aviones} );
+});
 
 //Mostrar un form para añadir un avión
 router.get('/add', (req,res) => res.render('avion/add'));  
 
 // Add un avion
-router.post('/add',(req,res) =>{    
+router.post('/add', async (req,res) =>  {     
     
     let { numero_avion, fabricante, modelo, velocidad_max} = req.body;
     let errors = [];
@@ -55,33 +56,37 @@ router.post('/add',(req,res) =>{
         })
     }else{ //Sino hay errores
         
-        //Insert into table
-        Avion.create({
+        const avion = await Avion.build({   //Insert into table
             numero_avion,
             fabricante,
             modelo,
             velocidad_max
-        })
-        .then(avion => res.redirect('/aviones'))        
-        .catch(err => console.log(err));
+        });
+
+        await avion.save();
+        return res.redirect('/aviones');
     }
 });
 
 //Buscar un avion por su número
-router.get('/buscar', (req,res) => res.render('avion/buscar'));  
+router.get('/buscar', (req,res) =>  res.render('avion/buscar'));  
 
-router.post('/buscar', (req, res) => {
+router.post('/buscar', async (req, res) => {
 
-    const { numero_avion } = req.body;
+    const  { numero_avion } = req.body;
+    let aviones = await Avion.findAll({ where: { 
+        numero_avion,
+        eliminado:0
+     } });
 
-    Avion.findAll(
-        { where: {
-            numero_avion //numero_avion: numero_avion
-        }
-    })
-    .then(aviones => res.render('avion/aviones', { aviones } ))
-    .catch(err => console.log(err));
+    if(aviones){
+        res.render('avion/buscarA', { aviones } );
+    }
 });
+
+//Mostrar datos del avión buscado
+router.get('/buscarA', (req,res) =>  res.render('avion/buscarA'));   
+
 
 //ELIMINAR AVION
 router.get('/delete/:numero_avion', (req,res) =>{
@@ -91,12 +96,13 @@ router.get('/delete/:numero_avion', (req,res) =>{
     const newData = {
         eliminado: 1
     }
-         
+   
     Avion.update( newData, { 
         where:{ 
             numero_avion  //numero_avion: numero_avion
-        } })
-    .then(res.render('avion/aviones'))
+        } 
+    })
+    .then(avion => res.redirect('/aviones'))  
     .catch(err => console.log(err));
 
  });
@@ -128,10 +134,8 @@ router.get('/edit/:numero_avion', (req,res) =>{  // Muestra los datos del avión
         where:{ 
             numero_avion  //numero_avion: numero_avion
         } })
-    //req.flash('success', 'Avión actualizado correctamente');
-    .then(res.render('avion/aviones'))
+    .then(avion => res.redirect('/aviones'))
     .catch(err => console.log(err));
  });
-
 
 module.exports = router;
