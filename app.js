@@ -74,6 +74,18 @@ app.use('/aviones', require('./routes/aviones'));
 //Routes autenticacion
 app.use('/auth', require('./routes/auths'));
 
+//Routes vuelos
+app.use('/vuelos', require('./routes/vuelos'));
+
+//Routes rutas
+app.use('/rutas', require('./routes/rutas'));
+
+//Routes aeropuestos
+app.use('/aeropuertos', require('./routes/aeropuertos'));
+
+//Routes pistas
+app.use('/pistas', require('./routes/pistas'));
+
 //Puerto
 const PORT = process.env.PORT || 8080;
 app.listen(PORT,console.log(`Servidor comenzo en el puerto ${PORT}`));

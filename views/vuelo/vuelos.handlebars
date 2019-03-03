@@ -1,0 +1,30 @@
+<h2 class="text-center m-4">Vuelos registrados</h2>
+<div class="container p-2">
+    <div class="row">
+        {{#each vuelos}}
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title ">Número de vuelo: {{ numeroVuelo }} </h5>
+                        <p class="m-2">Destino: {{ Destino }}</p>
+                        <p class="m-2">Origen: {{ Origen }}</p>
+                        {{#if numero_avion}}
+                        <p class="m-2">Avión asignado: {{ numero_avion }}</p>
+                         {{else}}
+                        <p class="m-2">Avión asignado: No asignado</p>
+                        {{/if}}
+                        <a href="/aviones/delete/{{ numeroVuelo }}" class="btn btn-danger"> Eliminar vuelo</a>
+                        <a href="/aviones/edit/{{ numeroVuelo }}" class="btn btn-secondary"> Editar vuelo</a>
+                    </div>
+                </div>
+            </div>
+        {{else}}
+            <div class="com-me 4 mx-auto">
+                <div class="card card-body text-center">
+                    <p>No hay vuelos registrados aún.</p>
+                    <a href="/vuelos/add">Create one!</a>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>

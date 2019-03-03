@@ -1,0 +1,26 @@
+<h2 class="text-center m-4">Aeropuertos registrados</h2>
+<div class="container p-2">
+    <div class="row">
+        {{#each aeropuertos}}
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title ">Codigo IATA: {{ IATA }} </h5>
+                        <p class="m-2">Nombre: {{ nombre }}</p>
+                        <p class="m-2">Pais: {{ pais }}</p>
+                        <p class="m-2">Ciudad: {{ ciudad }}</p>
+                        <a href="/aviones/delete/{{ numeroVuelo }}" class="btn btn-danger"> Eliminar ruta</a>
+                        <a href="/aviones/edit/{{ numeroVuelo }}" class="btn btn-secondary"> Editar ruta</a>
+                    </div>
+                </div>
+            </div>
+        {{else}}
+            <div class="com-me 4 mx-auto">
+                <div class="card card-body text-center">
+                    <p>No hay aeropuertos registrados aún.</p>
+                    <a href="/vuelos/add">Create one!</a>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>
