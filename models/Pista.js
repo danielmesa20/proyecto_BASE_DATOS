@@ -2,7 +2,6 @@ const Sequelize = require('sequelize');
 const db = require('../config/database');
 const Aeropuerto = require('../models/Aeropuerto');
 
-
 const Pista = db.define('Pistas', {
     nPista:{
         type: Sequelize.INTEGER,
@@ -12,13 +11,15 @@ const Pista = db.define('Pistas', {
         type: Sequelize.FLOAT,
         allowNull: false
     },
-    IATA:{
+    AeropuertoIATA: {
         type: Sequelize.STRING,
-        references:{
+        references: {
             model: Aeropuerto,
-            key: 'IATA'
+            key: "IATA"
         }
     }
 });
+
+//Pista.belongsTo(Aeropuerto);
 
 module.exports = Pista;

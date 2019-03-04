@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
-const Pista = require('../models/Pista');
-const
+const Pista = require('../models/Pista')
 
 const Aeropuerto = db.define('Aeropuertos', {
     IATA:{
@@ -23,5 +22,7 @@ const Aeropuerto = db.define('Aeropuertos', {
     }
 });
 
+
+Aeropuerto.hasMany(Pista);
 
 module.exports = Aeropuerto;
