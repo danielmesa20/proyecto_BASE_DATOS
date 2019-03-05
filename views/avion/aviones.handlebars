@@ -1,16 +1,41 @@
-<h2 class="text-center m-4">Aviones registrados</h2>
+<h2 class="text-center m-4">Datos técnicos de los aviones registrados</h2>
 <div class="container p-2">
     <div class="row">
         {{#each aviones}}
             <div class="col-md-4">
-                <div class="card text-center">
+                <div class="card text-justify">
                     <div class="card-body">
-                        <h5 class="card-title ">Número de avión: {{ numero_avion }} </h5>
+                        <h5 class="card-title text-center">Matricula del avión: {{ matriculaAvion }} </h5>
+                        <p class="m-2">Estado: {{ estadoAvion }}</p>
                         <p class="m-2">Fabricante: {{ fabricante }}</p>
                         <p class="m-2">Modelo: {{ modelo }}</p>
-                        <p class="m-2">Velocidad Máxima: {{ velocidad_max }}</p>
-                        <a href="/aviones/delete/{{numero_avion}}" class="btn btn-danger"> Eliminar avión</a>
-                        <a href="/aviones/edit/{{numero_avion}}" class="btn btn-secondary"> Editar avión</a>
+                        <p class="m-2">Velocidad Máxima: {{ vMaxima }} (km/h)</p>
+                        <p class="m-2">Velocidad cruzero: {{ vCruzero}} (km/h)</p>
+                        <p class="m-2">Carga máxima equipaje: {{ cargMaxE }} (kilos) </p>
+                        <p class="m-2">Carga máxima cabina: {{ cargMaxC }} (kilos) </p>
+                        <p class="m-2">Cantidad tripulación: {{ cantTel }} (Personas) </p>
+                        {{#if dispInternet}}
+                        <p class="m-2">Disponibilidad Internet: No </p>
+                        {{else}}
+                        <p class="m-2">Disponibilidad Internet: Si </p>
+                        {{/if}}
+                        {{#if dispEMedico}}
+                        <p class="m-2">Disponibilidad Equipo Médico: No </p>
+                        {{else}}
+                        <p class="m-2">Disponibilidad Equipo Médico: Si </p>
+                        {{/if}}  
+                        <p class="m-2">Cantidad asientos Primera Clase: {{ cAsientosPC }}</p>
+                        <p class="m-2">Cantidad asientos Clase Económica: {{ cAsientosCE }}</p>
+                        <p class="m-2">Números de salidas: {{ nSalidas }}</p>
+                        <p class="m-2">Distancia de despegue: {{ distDespegue }}</p>
+                        <p class="m-2">Cantidad combustible: {{ cCombustible }} (Kilos) </p>
+                        <p class="m-2">Cantidad tripulación: {{ cTripulacion }} (Kilos) </p>
+                        <div class="card text-center">
+                             <a href="/aviones/delete/{{ matriculaAvion }}" class="btn btn-danger"> Eliminar avión</a>
+                        </div>
+                        <div class="card text-center">
+                             <a href="/aviones/edit/{{ matriculaAvion }}" class="btn btn-secondary"> Editar avión</a>
+                        </div>
                     </div>
                 </div>
             </div>

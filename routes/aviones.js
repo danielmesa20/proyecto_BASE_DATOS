@@ -26,7 +26,7 @@ router.get('/add', (req,res) => res.render('avion/add'));
 router.post('/add', async (req,res) =>  {     
     
     let { numero_avion, fabricante, modelo, velocidad_max} = req.body;
-    let errors = [];
+    let errors = []; // Vector de errores
 
     //VERIFICAR SI UN CAMPO ESTA VACIO
     if(!numero_avion){
@@ -109,11 +109,11 @@ router.get('/delete/:numero_avion', (req,res) =>{
 
 
 //Editar avión
-router.get('/edit/:numero_avion', (req,res) =>{  // Muestra los datos del avión a editar
-    const { numero_avion } = req.params;
+router.get('/edit/:matriculaAvion', (req,res) =>{  // Muestra los datos del avión a editar
+    const { matriculaAvion } = req.params;
     Avion.findAll(
         { where: {
-            numero_avion //numero_avion: numero_avion
+            matriculaAvion //numero_avion: numero_avion
         }
     })
     .then(aviones => res.render('avion/edit', {avion:aviones[0]}))

@@ -9,8 +9,9 @@
                         <p class="m-2">Nombre: {{ nombre }}</p>
                         <p class="m-2">Pais: {{ pais }}</p>
                         <p class="m-2">Ciudad: {{ ciudad }}</p>
-                        <a href="/aviones/delete/{{ numeroVuelo }}" class="btn btn-danger"> Eliminar ruta</a>
-                        <a href="/aviones/edit/{{ numeroVuelo }}" class="btn btn-secondary"> Editar ruta</a>
+                        <a href="/aviones/delete/{{ IATA }}" class="btn btn-danger"> Eliminar </a>
+                        <a href="/aviones/edit/{{ IATA }}" class="btn btn-secondary"> Editar </a>
+                        <a href="/aeropuertos/pistas/{{ IATA }}" class="btn btn-secondary"> Pistas </a>
                     </div>
                 </div>
             </div>

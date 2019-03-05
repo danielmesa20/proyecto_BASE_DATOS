@@ -13,14 +13,16 @@ router.get('/', async  (req, res) =>  {
     res.render('aeropuerto/aeropuertos', {aeropuertos} );
 }); 
 
-
-router.get('/pistas', async  (req, res) =>  {
+router.get('/pistas/:IATA', async  (req, res) =>  {
+    const { IATA } = req.params;
+    console.log("hola", IATA);
     let aeropuertos = await Aeropuerto.findAll({
-        attributes: ['IATA', 'nombre'],
+        attributes: ['IATA', 'nombre'],                     //datos a traer de la tabla Aeropuertos
+        where: {IATA: IATA},
         include: [{ 
             model: Pista,
-            attributes: ['nPista', 'distPista'],
-            where: { AeropuertoIATA: { [Op.ne]: null } }  //INNER JOIN
+            attributes: ['id', 'distPista'],                //datos a traer de la tabla pistas
+            where: { AeropuertoIATA: { [Op.ne]: null }}    //INNER JOIN TABLE AEROPUERTO Y PISTAS
         }]
     });
     res.render('aeropuerto/aeropuertos-pistas', {aeropuertos} );

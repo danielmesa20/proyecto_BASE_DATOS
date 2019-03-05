@@ -3,11 +3,11 @@ const db = require('../config/database');
 
 const Avion = db.define('Aviones', {
     matriculaAvion:{
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
         primaryKey: true
     },
-    estado:{
+    estadoAvion:{
         type: Sequelize.STRING,
         allowNull: false
     },
@@ -23,11 +23,11 @@ const Avion = db.define('Aviones', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    cMaxEquipaje:{
+    cargMaxE:{
         type: Sequelize.FLOAT,
         allowNull: false
     },
-    cMaxCabina:{
+    cargMaxC:{
         type: Sequelize.FLOAT,
         allowNull: false
     },
@@ -35,7 +35,7 @@ const Avion = db.define('Aviones', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    cTelevisores:{
+    cantTel:{
         type: Sequelize.INTEGER,
         allowNull: false
     },
@@ -43,19 +43,19 @@ const Avion = db.define('Aviones', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    dispEquipoMedico:{
+    dispEMedico:{
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    asientosPC:{
+    cAsientosPC:{
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    asientosCE:{
+    cAsientosCE:{
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    cSalidas:{
+    nSalidas:{
         type: Sequelize.INTEGER,
         allowNull: false
     },
@@ -76,5 +76,5 @@ const Avion = db.define('Aviones', {
         allowNull: false
     }
 });
-
+/* Avion.belongsTo(Vuelo); */
 module.exports = Avion;

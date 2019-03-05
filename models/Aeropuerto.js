@@ -23,6 +23,6 @@ const Aeropuerto = db.define('Aeropuertos', {
 });
 
 
-Aeropuerto.hasMany(Pista);
+Aeropuerto.hasMany(Pista,{foreignKey: 'AeropuertoIATA'});
 
 module.exports = Aeropuerto;

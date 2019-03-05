@@ -1,26 +1,24 @@
-<h2 class="text-center m-4">Aeropuertos y pistas</h2>
-<div class="container p-2">
+<h2 class="text-center m-4">Pistas del aeropuerto</h2>
+<div class="container p-4 ">
     <div class="row">
         {{#each aeropuertos}}
-            <div class="col-md-4">
+            <div class="col-md-6 mx-auto">
                 <div class="card text-center">
                     <div class="card-body">
                         <h5 class="card-title ">Codigo IATA: {{ IATA }} </h5>
                         <p class="m-2">Nombre: {{ nombre }}</p>
-                        <p>Pistas del aeropuerto</p>
+                        <p class="text-center"><b>Pistas del aeropuerto</b></p>
                         {{#each Pistas}}
-                        <p class="m-2">Número de pista: {{nPista }}, Distancia: {{ distPista }} (m)</p>
+                        <p class="m-2">Número de pista: {{ id }}, Distancia: {{ distPista }} (m)</p>
                         {{/each}}
                     </div>
                 </div>
             </div>
         {{else}}
-            <div class="com-me 4 mx-auto">
-                <div class="card card-body text-center">
-                    <p>No hay aeropuertos registrados aún.</p>
-                    <a href="/vuelos/add">Create one!</a>
-                </div>
-            </div>
+        <p class="m-2  mx-auto">Este aeropuerto no tiene pistas registradas</p>
         {{/each}}
+        <div class="container p-4  text-center">
+           <a href="/aeropuertos" class="btn btn-secondary"> Ver aeropuertos registrados </a>                
+        </div>
     </div>
 </div>

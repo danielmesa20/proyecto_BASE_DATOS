@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
+const Avion = require('../models/Avion');
 
 const Vuelo = db.define('Vuelos', {
     numeroVuelo:{
@@ -15,21 +16,25 @@ const Vuelo = db.define('Vuelos', {
         type: Sequelize.DATE,
         allowNull: false 
     },
-    fechaLLegada:{
+    fechaLlegada:{
         type: Sequelize.DATE,
         allowNull: false 
     },
     fechaRealLLegada:{
         type: Sequelize.DATE,
-        allowNull: false 
+        allowNull: true 
     },
     fechaRealLLegada:{
         type: Sequelize.DATE,
-        allowNull: false 
+        allowNull: true 
     },
     matriculaAvion:{
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING,
+        references: {
+            model: Avion,
+            key: "matriculaAvion"
+        }
     }
 });
-
+Vuelo.hasOne(Avion, { foreignKey: 'matriculaAvion' } );
 module.exports = Vuelo;

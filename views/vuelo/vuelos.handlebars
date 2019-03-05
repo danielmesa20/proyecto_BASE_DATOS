@@ -3,18 +3,26 @@
     <div class="row">
         {{#each vuelos}}
             <div class="col-md-4">
-                <div class="card text-center">
+                <div class="card text-justify">
                     <div class="card-body">
-                        <h5 class="card-title ">Número de vuelo: {{ numeroVuelo }} </h5>
-                        <p class="m-2">Destino: {{ Destino }}</p>
-                        <p class="m-2">Origen: {{ Origen }}</p>
-                        {{#if numero_avion}}
-                        <p class="m-2">Avión asignado: {{ numero_avion }}</p>
+                        <h5 class="card-title text-center ">Número de vuelo: {{ numeroVuelo }} </h5>
+                        <p class="m-2">Estado: {{ estado }}</p>
+                        <p class="m-2">Fecha salida programada: {{ fechaSalida }} </p>
+                        <p class="m-2">Fecha llegada programada: {{ fechaLlegada }} </p>
+                        {{#if matriculaAvion}}
+                        <p class="m-2">Matricula avión asignado: {{ matriculaAvion }}</p>
                          {{else}}
-                        <p class="m-2">Avión asignado: No asignado</p>
+                        <p class="m-2">Matricula Avión asignado: No asignado</p>
                         {{/if}}
-                        <a href="/aviones/delete/{{ numeroVuelo }}" class="btn btn-danger"> Eliminar vuelo</a>
-                        <a href="/aviones/edit/{{ numeroVuelo }}" class="btn btn-secondary"> Editar vuelo</a>
+                        {{#if fechaRealSalida}}
+                        <p class="m-2">Fecha real salida: {{ fechaRealSalida }} </p>
+                        {{/if}}
+                        {{#if fechaRealLlegada}}
+                        <p class="m-2">Fecha real llegada: {{ fechaRealLlegada }} </p>
+                        {{/if}}
+                        <div class="card text-center">
+                            <a href="/aviones/delete/{{ numeroVuelo }}" class="btn btn-danger"> Editar vuelo</a>
+                        </div>
                     </div>
                 </div>
             </div>

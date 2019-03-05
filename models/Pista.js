@@ -3,9 +3,10 @@ const db = require('../config/database');
 const Aeropuerto = require('../models/Aeropuerto');
 
 const Pista = db.define('Pistas', {
-    nPista:{
+    id:{
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        primaryKey: true
     },
     distPista:{
         type: Sequelize.FLOAT,

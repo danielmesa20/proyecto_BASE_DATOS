@@ -15,7 +15,7 @@ router.get('/buscarVCA', async  (req, res) =>  {
 
     let vuelos = await Vuelo.findAll({
         where: {
-            numero_avion:{
+            matriculaAvion:{
                 [Op.ne]: null
             }
         } 
@@ -28,7 +28,7 @@ router.get('/buscarVSA', async  (req, res) =>  {
 
     let vuelos = await Vuelo.findAll({
         where: {
-            numero_avion: null,
+            matriculaAvion: null,
         } 
     });
     res.render('vuelo/vuelos', {vuelos} );
