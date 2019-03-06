@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
+const Vuelo = require('../models/Vuelo');
 
 const Avion = db.define('Aviones', {
     matriculaAvion:{
@@ -76,5 +77,6 @@ const Avion = db.define('Aviones', {
         allowNull: false
     }
 });
-/* Avion.belongsTo(Vuelo); */
+
+Avion.hasOne(Vuelo, { foreignKey: 'mAvion' } ); 
 module.exports = Avion;

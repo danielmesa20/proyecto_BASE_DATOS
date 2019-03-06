@@ -21,6 +21,4 @@ const Pista = db.define('Pistas', {
     }
 });
 
-//Pista.belongsTo(Aeropuerto);
-
 module.exports = Pista;

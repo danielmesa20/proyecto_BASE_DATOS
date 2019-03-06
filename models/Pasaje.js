@@ -1,32 +1,26 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
+const Vuelo = require('../models/Vuelo');
 
-const Ruta = db.define('Rutas', {
-    nRuta:{
+const Pasaje = db.define('Pasajes', {
+    nPasaje:{
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true
     },
-    destino:{
+    clase:{
         type: Sequelize.STRING,
         allowNull: false
     },
-    origen:{
-        type: Sequelize.STRING,
+    nCedula:{    //Pasajeros
+        type: Sequelize.INTEGER,
         allowNull: false
     },
-    distancia:{
-        type: Sequelize.FLOAT,
-        allowNull: false
-    },
-    precioBase:{
-        type: Sequelize.FLOAT,
-        allowNull: false
-    },
-    eliminado:{
+    nVueloP:{    //Vuelos
         type: Sequelize.INTEGER,
         allowNull: false
     }
 });
 
-module.exports = Ruta;
+/* Pasaje.hasOne(Vuelo, { foreignKey: 'numeroVuelo' } );   */
+module.exports = Pasaje;
