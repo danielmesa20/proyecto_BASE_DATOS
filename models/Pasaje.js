@@ -12,15 +12,12 @@ const Pasaje = db.define('Pasajes', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    nCedula:{    //Pasajeros
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
-    nVueloP:{    //Vuelos
+    nVuelo:{   
         type: Sequelize.INTEGER,
         allowNull: false
     }
 });
 
-/* Pasaje.hasOne(Vuelo, { foreignKey: 'numeroVuelo' } );   */
+Pasaje.belongsTo(Vuelo, {foreignKey: 'nVuelo'});
+
 module.exports = Pasaje;

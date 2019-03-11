@@ -1,24 +1,19 @@
-<h2 class="text-center m-4">Asientos disponibles por vuelo</h2>
+<h2 class="text-center m-4">Pasajeros del vuelo: {{ dato }}</h2>
 <div class="container p-2">
     <div class="row">
         {{#each datos}}
             <div class="col-md-4">
                 <div class="card text-justify">
                     <div class="card-body">
-                        <h5 class="card-title text-center ">Número de vuelo: {{ Vuelo.numeroVuelo }} </h5>
-                        <p class="m-2">Matricula del avion: {{ matriculaAvion }}</p>
-                        <p class="m-2">Asientos Primera Clase: {{ cAsientosPC }} </p>    
-                        <p class="m-2">Asientos Clase Economica: {{ cAsientosCE }} </p> 
-                        <p class="m-2">Asientos vendidos: {{ aviones.RatingsCount }} </p> 
-                        {{#each Vuelo.Pasajes}}
-                        <p class="m-2">Cedula cliente: {{ nCedula }} </p>
-                        <p class="m-2">Clase: {{ clase }} </p> 
-                         <p class="m-2">Clase: {{ RatingsCount }} </p>   
-                        {{/each}} 
-                        {{#each Pasajes}}
-                         <p class="m-2">Clase: {{ RatingsCount }} </p>   
-                        {{/each}} 
+                        <p class="m-2">Numero de pasaje: {{ nPasaje }} </p>
+                        <p class="m-2">Clase: {{ clase }} </p>
                     </div>
+                </div>
+            </div>
+        {{else}}
+            <div class="com-me 4 mx-auto">
+                <div class="card card-body text-center">
+                    <p>No hay pasajeros para este vuelo aún.</p>
                 </div>
             </div>
         {{/each}}

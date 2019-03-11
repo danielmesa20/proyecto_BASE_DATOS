@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
-const Aeropuerto = require('../models/Aeropuerto');
 
 const Pista = db.define('Pistas', {
     id:{
@@ -13,11 +12,7 @@ const Pista = db.define('Pistas', {
         allowNull: false
     },
     AeropuertoIATA: {
-        type: Sequelize.STRING,
-        references: {
-            model: Aeropuerto,
-            key: "IATA"
-        }
+        type: Sequelize.STRING
     }
 });
 

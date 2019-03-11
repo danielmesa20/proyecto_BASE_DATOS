@@ -3,76 +3,58 @@ const router = express.Router();
 const db = require('../config/database');
 const Vuelo = require('../models/Vuelo');
 const Avion = require('../models/Avion');
+const Ruta = require('../models/Ruta');
 const Pasaje = require('../models/Pasaje');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
-//MOSTRAR TODOS LOS VUELOS
-router.get('/', async  (req, res) =>  {
-    let vuelos = await Vuelo.findAll();
-    res.render('vuelo/vuelos', {vuelos} );
+//VUELOS
+router.get('/', async  (req, res) =>  { //INNER JOIN TABLE VUELOS Y TABLE RUTAS
+    let datos = await Avion.findAll({
+        attributes: ['cAsientosCE', 'cAsientosPC'],
+        include: [{ 
+            model: Vuelo,
+            attributes: ['numeroVuelo', 'fechaSalida', 'fechaLlegada'], //atributos tabla Vuelos
+            required: true, 
+                include: [{ 
+                    model: Ruta,
+                    attributes: ['destino', 'origen'], //atributos tabla Rutas
+                    required: true         
+                }]       
+        }],
+    });
+    console.log(datos);
+    res.render('vuelo/vuelos', {datos} );
 });
 
-router.get('/buscarVCA', async  (req, res) =>  {
-
-    let vuelos = await Vuelo.findAll({
-        where: {
-            matriculaAvion:{
-                [Op.ne]: null
-            }
-        } 
+router.get('/datos/:dato', async  (req, res) =>  {
+    const { dato } = req.params;
+    let datos = await Pasaje.findAll({
+        attributes: ['nPasaje', 'clase'], //atributos tabla Rutas
+        where:{ nVuelo: dato }
     });
-    res.render('vuelo/vuelos', {vuelos} );
+    console.log(datos);
+    res.render('vuelo/datos', {datos, dato} );
 
 });
 
 router.get('/buscarVSA', async  (req, res) =>  {
 
-    let vuelos = await Vuelo.findAll({
+    let datos = await Vuelo.findAll({
         where: {
-            matriculaAvion: null,
+            mAvion: null,
         } 
     });
-    res.render('vuelo/vuelos', {vuelos} );
+    res.render('vuelo/datos', {vuelos} );
 
 });
 
-router.get('/disp', async  (req, res) =>  {
+router.get('/disp', async  (req, res) =>  { //Cantidad de asientos disponibles por vuelos
 
-    let datos = await Avion.findAll({  // INNER JOIN TABLE Avion Y Vuelos
-        attributes: ['matriculaAvion', 'cAsientosPC','cAsientosCE',
-        [Sequelize.fn('COUNT', Sequelize.col('nCedula')), 'RatingsCount'] ],        
-        include: [{ 
-            model: Vuelo,
-            attributes: ['numeroVuelo'],
-            where: { numeroVuelo: 999 },
-                include: [{ 
-                    model: Pasaje,
-                    attributes:['nCedula', 'clase'],
-                    where: { nVueloP: { [Op.ne]: null }}                             
-                }]                                           
-        }]
-    });
-
-    /* let datos2 = await Pasaje.findAll({
-        attributes: [
-            [Sequelize.fn("COUNT", Sequelize.col('nCedula')), "RatingsCount"]
-        ],
-        where: { nVueloP: 999 , clase: 'Economica'}
+    const datos = await Pasaje.count({
+        where: { nVueloP: 999 }
     })
-
-    let datos3 = await Pasaje.findAll({
-        attributes: [
-            [Sequelize.fn("COUNT", Sequelize.col('nCedula')), "RatingsCount2"]
-        ],
-        where: { nVueloP: 999 , clase: 'Primera Clase'}
-    }) */
-
     console.log(datos);
-    /* console.log(datos2);
-    console.log(datos3); */
-    res.render('vuelo/datos', {datos});
-
 });
 
 module.exports = router;

@@ -12,6 +12,9 @@ const Avion = db.define('Aviones', {
         type: Sequelize.STRING,
         allowNull: false
     },
+    nVuelo:{
+        type: Sequelize.INTEGER,
+    },
     vMaxima:{
         type: Sequelize.INTEGER,
         allowNull: false
@@ -78,5 +81,6 @@ const Avion = db.define('Aviones', {
     }
 });
 
-Avion.hasOne(Vuelo, { foreignKey: 'mAvion' } ); 
+Avion.belongsTo(Vuelo,{foreignKey: 'nVuelo'});
+
 module.exports = Avion;

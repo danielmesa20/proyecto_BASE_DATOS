@@ -1,9 +1,11 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
+const Vuelo = require('../models/Vuelo');
 
 const Ruta = db.define('Rutas', {
     nRuta:{
         type: Sequelize.INTEGER,
+        autoincrement:true,
         allowNull: false,
         primaryKey: true
     },
@@ -19,13 +21,12 @@ const Ruta = db.define('Rutas', {
         type: Sequelize.FLOAT,
         allowNull: false
     },
-    precioBase:{
+    pBase:{
         type: Sequelize.FLOAT,
         allowNull: false
     },
-    eliminado:{
+    escala:{
         type: Sequelize.INTEGER,
-        allowNull: false
     }
 });
 
