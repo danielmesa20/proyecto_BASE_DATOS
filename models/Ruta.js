@@ -17,7 +17,7 @@ const Ruta = db.define('Rutas', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    distancia:{
+    dist:{
         type: Sequelize.FLOAT,
         allowNull: false
     },
@@ -29,5 +29,6 @@ const Ruta = db.define('Rutas', {
         type: Sequelize.INTEGER,
     }
 });
+
 
 module.exports = Ruta;

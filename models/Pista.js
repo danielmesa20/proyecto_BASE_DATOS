@@ -1,8 +1,9 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
+const Aeropuerto = require('../models/Aeropuerto');
 
 const Pista = db.define('Pistas', {
-    id:{
+    nPista:{
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true
@@ -11,7 +12,7 @@ const Pista = db.define('Pistas', {
         type: Sequelize.FLOAT,
         allowNull: false
     },
-    AeropuertoIATA: {
+    cAeropuerto: {
         type: Sequelize.STRING
     }
 });

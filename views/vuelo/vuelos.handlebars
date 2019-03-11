@@ -5,21 +5,21 @@
             <div class="col-md-4">
                 <div class="card text-justify">
                     <div class="card-body">
-                        <h5 class="card-title text-center ">Número de vuelo: {{ Vuelo.numeroVuelo }} </h5>
-                        <p class="m-2">Fecha salida programada: {{ Vuelo.fechaSalida }} </p>
-                        <p class="m-2">Fecha llegada programada: {{ Vuelo.fechaLlegada }} </p>
-                        <p class="m-2">Origen: {{ Vuelo.Ruta.origen }} </p>
-                        <p class="m-2">Destino: {{ Vuelo.Ruta.destino }} </p>
+                        <h5 class="card-title text-center ">Número de vuelo: {{ numeroVuelo }} </h5>
+                        <p class="m-2">Fecha salida programada: {{ fechaSalida }} </p>
+                        <p class="m-2">Fecha llegada programada: {{ fechaLlegada }} </p>
+                        <p class="m-2">Origen: {{ Ruta.origen }} </p>
+                        <p class="m-2">Destino: {{ Ruta.destino }} </p>
                         {{#if fechaRealSalida}}
-                        <p class="m-2">Fecha real salida: {{ Vuelo.fechaRealSalida }} </p>
+                        <p class="m-2">Fecha real salida: {{ fechaRealSalida }} </p>
                         {{/if}}
                         {{#if fechaRealLlegada}}
-                        <p class="m-2">Fecha real llegada: {{ Vuelo.fechaRealLlegada }} </p>
+                        <p class="m-2">Fecha real llegada: {{ fechaRealLlegada }} </p>
                         {{/if}}
-                        <p class="m-2">Asientos Clase Economica: {{ cAsientosCE }} </p>
-                        <p class="m-2">Asientos Primera Clase: {{ cAsientosPC }} </p>
+                        <p class="m-2">Asientos disp Clase Economica: {{ Avion.cAsientosCE }} </p>
+                        <p class="m-2">Asientos disp Primera Clase: {{ cAsientosPC }} </p>
                         <div class="card text-center">
-                             <a href="/vuelos/datos/{{ Vuelo.numeroVuelo }}" class="btn btn-secondary">Pasajeros</a>
+                             <a href="/vuelos/datos/{{ numeroVuelo }}" class="btn btn-secondary">Pasajeros</a>
                         </div>
                     </div>
                 </div>

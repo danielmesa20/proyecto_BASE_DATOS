@@ -21,7 +21,8 @@ const Aeropuerto = db.define('Aeropuertos', {
         allowNull: false 
     }
 });
-
-Aeropuerto.hasMany(Pista,{foreignKey: 'AeropuertoIATA'}); 
+//Asociacion tabla Aeropuertos y tabla Pistas
+Aeropuerto.hasMany(Pista, {foreignKey: 'cAeropuerto'});
+Pista.belongsTo(Aeropuerto, {foreignKey: 'cAeropuerto' });
 
 module.exports = Aeropuerto;

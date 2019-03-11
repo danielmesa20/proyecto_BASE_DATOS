@@ -8,12 +8,9 @@ const Avion = db.define('Aviones', {
         allowNull: false,
         primaryKey: true
     },
-    estadoAvion:{
+    estado:{
         type: Sequelize.STRING,
         allowNull: false
-    },
-    nVuelo:{
-        type: Sequelize.INTEGER,
     },
     vMaxima:{
         type: Sequelize.INTEGER,
@@ -81,6 +78,8 @@ const Avion = db.define('Aviones', {
     }
 });
 
-Avion.belongsTo(Vuelo,{foreignKey: 'nVuelo'});
+//Asociacion tabla Aviones y tabla Vuelos
+Avion.hasOne(Vuelo, { foreignKey: 'mAvion' } );
+Vuelo.belongsTo(Avion, { foreignKey: 'mAvion' } );
 
 module.exports = Avion;

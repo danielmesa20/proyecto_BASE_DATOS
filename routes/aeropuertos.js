@@ -10,22 +10,34 @@ const Op = Sequelize.Op;
 
 router.get('/', async  (req, res) =>  {
     let aeropuertos = await Aeropuerto.findAll();
+    console.log(aeropuertos);
     res.render('aeropuerto/aeropuertos', {aeropuertos} );
 }); 
 
-router.get('/pistas/:IATA', async  (req, res) =>  { //buscar las pistas de un aeropuerto
-    const { IATA } = req.params;
+router.get('/pistas/:dato', async  (req, res) =>  { //buscar las pistas de un aeropuerto
+    const { dato } = req.params;
     let aeropuertos = await Aeropuerto.findAll({
         attributes: ['IATA', 'nombre'],                     //datos a traer de la tabla Aeropuertos
-        where: {IATA: IATA},
+        where: {IATA: dato},
         include: [{ 
             model: Pista,
-            attributes: ['id', 'distPista'],                //datos a traer de la tabla pistas
-            where: { AeropuertoIATA: { [Op.ne]: null }}     //INNER JOIN TABLE AEROPUERTO Y PISTAS
+            attributes: ['nPista', 'distPista'],                // datos a traer de la tabla pistas
+            require: true                                   // INNER JOIN TABLE AEROPUERTO Y PISTAS
         }]
     });
     console.log(aeropuertos);
     res.render('aeropuerto/aeropuertos-pistas', {aeropuertos} );
 });
+
+router.get('/prueba', async  (req, res) =>  {
+    let aeropuertos = await Pista.findAll({
+        include: [{ 
+            model: Aeropuerto,
+            require: true                                  
+        }]
+    });
+    console.log(aeropuertos)
+    res.render('aeropuerto/aeropuertos', {aeropuertos} );
+}); 
 
 module.exports = router;

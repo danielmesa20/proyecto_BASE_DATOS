@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
 const Vuelo = require('../models/Vuelo');
+const Pasajero = require('../models/Pasajero');
 
 const Pasaje = db.define('Pasajes', {
     nPasaje:{
@@ -12,12 +13,17 @@ const Pasaje = db.define('Pasajes', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    nVuelo:{   
+    nCedula:{
         type: Sequelize.INTEGER,
         allowNull: false
+    },
+    nVuelo:{
+        type: Sequelize.INTEGER,
     }
 });
 
-Pasaje.belongsTo(Vuelo, {foreignKey: 'nVuelo'});
+//Asociacion tabla Aeropuertos y tabla Pistas
+Pasajero.hasMany(Pasaje, {foreignKey: 'nCedula'});
+Pasaje.belongsTo(Pasajero, {foreignKey: 'nCedula' }); 
 
 module.exports = Pasaje;
