@@ -16,14 +16,17 @@
                         {{#if fechaRealLlegada}}
                         <p class="m-2">Fecha real llegada: {{ fechaRealLlegada }} </p>
                         {{/if}}
+                         <div class="card text-center">
+                             <a href="/vuelos/comprar/{{ numeroVuelo }}" class="btn btn-secondary">Comprar</a>
+                        </div>
                     </div>
                 </div>
             </div>
         {{else}}
             <div class="com-me 4 mx-auto">
                 <div class="card card-body text-center">
-                    <p>No hay vuelos registrados aún.</p>
-                    <a href="/vuelos/add">Create one!</a>
+                    <p>No hay vuelos con esas especificaciones!</p>
+                    <a href="/vuelos/buscar">Buscar otro</a>
                 </div>
             </div>
         {{/each}}

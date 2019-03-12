@@ -11,7 +11,6 @@ const Op = Sequelize.Op;
 
 //VUELOS
 router.get('/', async  (req, res) =>  { //INNER JOIN TABLE VUELOS , AVION  Y RUTAS
-    console.log("hola");
         let datos = await Vuelo.findAll({
             attributes: ['numeroVuelo', 'fechaSalida', 'fechaLlegada'], //atributos tabla Vuelos
             include: [
@@ -75,14 +74,23 @@ router.post('/buscar', async  (req, res) =>  {
             }]
         }); 
         /* console.log(datos);  */
-        res.render('vuelo/mostrar', {datos} ); 
+        if(datos.length>0){
+            res.render('vuelo/mostrar', {datos} ); 
+        }else{
+            errors.push({text: 'No hay vuelos con esas especificaciones! '})
+            res.render('vuelo/buscar', {
+                errors,
+                origen,
+                destino
+            })
+        }
+       
     }
 });
 
-router.get('/disp', async  (req, res) =>  { //Cantidad de asientos disponibles por vuelos
-
-
-    
+router.get('/comprar/:dato', async  (req, res) =>  { //Cantidad de asientos disponibles por vuelos
+    const { dato } = req.params;
+    res.render('vuelo/comprar', { dato });
 });
 
 module.exports = router;
