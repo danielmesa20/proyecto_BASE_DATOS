@@ -11,6 +11,7 @@ const Op = Sequelize.Op;
 
 //VUELOS
 router.get('/', async  (req, res) =>  { //INNER JOIN TABLE VUELOS , AVION  Y RUTAS
+    console.log("hola");
         let datos = await Vuelo.findAll({
             attributes: ['numeroVuelo', 'fechaSalida', 'fechaLlegada'], //atributos tabla Vuelos
             include: [
@@ -28,7 +29,6 @@ router.get('/', async  (req, res) =>  { //INNER JOIN TABLE VUELOS , AVION  Y RUT
         });
         
         console.log(datos);
-
         res.render('vuelo/vuelos', {datos} );
 });
 
@@ -48,16 +48,35 @@ router.get('/datos/:dato', async  (req, res) =>  {
 
 });
 
-router.get('/buscarVSA', async  (req, res) =>  {
-    let datos = await Pasaje.findAll({
-        include: [{ 
-            model: Pasajero,
-            required: true
-        }]
-    });
+router.get('/buscar', (req,res) =>  res.render('vuelo/buscar')); 
 
-    console.log(datos);
-    res.render('vuelo/vuelos', {datos} );
+router.post('/buscar', async  (req, res) =>  {
+    const  { origen, destino, dateS, dateL } = req.body;
+    let errors = []; // Vector de errores
+    if(origen == destino){
+        errors.push({text: 'El destino debe ser distinto al origen'})
+    }
+    if(dateS == dateL){
+        errors.push({text: 'La fecha de llegada no puede ser igual a la fecha de salida'})
+    }
+    if(errors.length>0){
+        res.render('vuelo/buscar', {
+            errors,
+            origen,
+            destino
+        })
+    }else{
+        let datos = await Vuelo.findAll({
+            where:{ fechaSalida: dateS, fechaLlegada: dateL },
+            include: [{ 
+                model: Ruta,
+                where: { origen: origen, destino: destino },
+                required: true
+            }]
+        }); 
+        /* console.log(datos);  */
+        res.render('vuelo/mostrar', {datos} ); 
+    }
 });
 
 router.get('/disp', async  (req, res) =>  { //Cantidad de asientos disponibles por vuelos

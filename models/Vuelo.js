@@ -11,19 +11,19 @@ const Vuelo = db.define('Vuelos', {
         primaryKey: true
     },
     fechaSalida:{
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false 
     },
     fechaLlegada:{
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false 
     },
     fechaRealLlegada:{
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: true 
     },
     fechaRealSalida:{
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: true 
     },
     mAvion:{
