@@ -1,4 +1,4 @@
-<h2 class="text-center m-4">Aeropuertos registrados</h2>
+<h2 class="text-center m-4">Aeropuertos</h2>
 <div class="container p-2">
     <div class="row">
         {{#each aeropuertos}}
@@ -9,17 +9,10 @@
                         <p class="m-2">Nombre: {{ nombre }}</p>
                         <p class="m-2">Pais: {{ pais }}</p>
                         <p class="m-2">Ciudad: {{ ciudad }}</p>
-                        <a href="/aviones/delete/{{ IATA }}" class="btn btn-danger"> Eliminar </a>
-                        <a href="/aviones/edit/{{ IATA }}" class="btn btn-secondary"> Editar </a>
-                        <a href="/aeropuertos/pistas/{{ IATA }}" class="btn btn-secondary"> Pistas </a>
+                         <div class="card text-center">
+                             <a href="/aeropuertos/pistas/{{ IATA }}" class="btn btn-secondary">Pistas</a>
+                        </div>
                     </div>
-                </div>
-            </div>
-        {{else}}
-            <div class="com-me 4 mx-auto">
-                <div class="card card-body text-center">
-                    <p>No hay aeropuertos registrados aún.</p>
-                    <a href="/vuelos/add">Create one!</a>
                 </div>
             </div>
         {{/each}}

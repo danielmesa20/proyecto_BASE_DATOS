@@ -83,8 +83,8 @@ app.use('/rutas', require('./routes/rutas'));
 //Routes aeropuestos
 app.use('/aeropuertos', require('./routes/aeropuertos'));
 
-//Routes pistas
-app.use('/pistas', require('./routes/pistas'));
+//Routes Pasajes
+app.use('/pasajes', require('./routes/pasajes'));
 
 //Puerto
 const PORT = process.env.PORT || 8080;

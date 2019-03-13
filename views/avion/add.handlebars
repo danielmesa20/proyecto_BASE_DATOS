@@ -2,8 +2,8 @@
     <div class="row">
         <div class="col-md-5 mx-auto">
 
-      <h1 class="text-center">Agregar un avión</h1>
-      
+      <h1 class="text-center p-4">REGISTRAR UN AVIÓN</h1>
+    
       {{#each errors}}
         <div class="error">
           <p>{{text}}</p>
@@ -12,8 +12,12 @@
 
     <form action="/aviones/add" method="POST">
         <div class="form-group">
-          <label for="numero_avion">Número del avión</label>
-          <input type="number" name="numero_avion" id="numero_avion" class="form-control" placeholder="Ejemplo: 00001" maxlength="11"  value={{numero_avion}}>
+          <label for="matriculaAvion">Matricula del avión</label>
+          <input type="text" name="matriculaAvion" id="matriculaAvion" placeholder="Ejemplo: ABC12" class="form-control"  value={{matriculaAvion}}>
+        </div>
+        <div class="form-group">
+          <label for="estado">Estado</label>
+          <input type="text" name="estado" id="estado" class="form-control" value="Nuevo" disabled>
         </div>
         <div class="form-group">
           <label for="fabricante">Fabricante del avión</label>
@@ -24,15 +28,68 @@
         <input type="text" name="modelo" id="modelo" class="form-control" placeholder="Ejemplo: Tu-204, A320, CRJ200" maxlength="256" value={{modelo}}>
         </div>
         <div class="form-group">
-          <label for="velocidad_max">Velocidad Máxima (Km/h)</label>
-            <input type="number" name="velocidad_max" id="velocidad_max" class="form-control" placeholder="Ejemplo: 300" value={{velocidad_max}}>
+          <label for="vMaxima">Velocidad Máxima (Km/h)</label>
+            <input type="number" name="vMaxima" id="vMaxima" class="form-control" placeholder="Ejemplo: 600" value={{vMaxima}}>
+        </div>
+        <div class="form-group">
+          <label for="vCruzero">Velocidad Cruzero (Km/h)</label>
+            <input type="number" name="vCruzero" id="vCruzero" class="form-control" placeholder="Ejemplo: 500" value={{vCruzero}}>
+        </div>
+        <div class="form-group">
+          <label for="cargMaxE">Carga máxima Equipaje (kg)</label>
+            <input type="number" name="cargMaxE" id="cargMaxE" class="form-control" placeholder="Ejemplo: 30000" value={{cargMaxE}}>
+        </div>
+        <div class="form-group">
+          <label for="cargMaxC">Carga máxima cabina (kg)</label>
+            <input type="number" name="cargMaxC" id="cargMaxC" class="form-control" placeholder="Ejemplo: 30000" value={{cargMaxC}}>
+        </div>
+        <div class="form-group">
+          <label for="cantTel">Cantidad televisores</label>
+            <input type="number" name="cantTel" id="cantTel" class="form-control" placeholder="Ejemplo: 30" value={{cantTel}}>
+        </div>
+       <div class="form-group">
+            <label for="dispInternet">Disponibilidad internet</label>
+                <select class="form-control" id="dispInternet" name="dispInternet">   
+                    <option> SI </option>
+                    <option> NO </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="dispEMedico">Disponibilidad Equipo Medico</label>
+                <select class="form-control" id="dispEMedico" name="dispEMedico">   
+                    <option>SI</option>
+                    <option>NO</option>
+                </select>
+        </div>
+        <div class="form-group">
+          <label for="cAsientosPC">Cantidad Asientos Primera Clase</label>
+            <input type="number" name="cAsientosPC" id="cAsientosPC " class="form-control" placeholder="Ejemplo: 30" value={{cAsientosPC}}>
+        </div>
+        <div class="form-group">
+          <label for="cAsientosCE">Cantidad Asientos Clase Economica</label>
+            <input type="number" name="cAsientosCE" id="cAsientosCE " class="form-control" placeholder="Ejemplo: 130" value={{cAsientosCE}}>
+        </div>
+        <div class="form-group">
+          <label for="cCombustible">Cantidad combustible (kg) </label>
+            <input type="number" name="cCombustible" id="cCombustible" class="form-control" placeholder="Ejemplo: 20000" value={{cCombustible}}>
+        </div>
+        <div class="form-group">
+          <label for="nSalidas">Numero de salidas</label>
+            <input type="number" name="nSalidas" id="nSalidas " class="form-control" placeholder="Ejemplo: 3" value={{nSalidas}}>
+        </div>
+        <div class="form-group">
+          <label for="distDespegue">Distancia de despegue (metros)</label>
+            <input type="number" name="distDespegue" id="distDespegue  " class="form-control" placeholder="Ejemplo: 1300" value={{distDespegue}}>
+        </div>
+        <div class="form-group">
+          <label for="cTripulacion">Cantidad de tripulación</label>
+            <input type="number" name="cTripulacion" id="cTripulacion" class="form-control" placeholder="Ejemplo: 5" value={{cTripulacion}}>
         </div>
         <div class="text-center">
-             <button type="submit" class="btn btn-danger btn-lg btn-block">Añadir</button>
+             <button type="submit" class="btn btn-danger btn-lg btn-block">Registrar</button>
         </div>
-       
+  
       </form>
-
         </div>
     </div>
 </div>

@@ -1,11 +1,11 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
-const Pasaje = require('../models/Pasaje');
+const Telefono = require('../models/Telefono');
 
 const Pasajero = db.define('Pasajeros', {
     cedula:{
         type: Sequelize.INTEGER,
-        primarykey: true,
+        primaryKey:true,
         allowNull: false
     },
     nombre:{
@@ -22,6 +22,8 @@ const Pasajero = db.define('Pasajeros', {
     }
 });
 
-
+//Asociacion tabla Pasajeros y tabla Telefonoss (Probar)
+Pasajero.hasMany(Telefono, {foreignKey: 'nCedula'});
+Telefono.belongsTo(Pasajero, {foreignKey: 'nCedula' });
 
 module.exports = Pasajero;

@@ -10,13 +10,12 @@ module.exports = function(passport){
             User.findOne(
                 { where: { email }
             }).then(user =>{
-                if(!user){
+                if(!user){                                  //Verifica que el correo ingersado esté registrado
                     console.log("no registrado");
                     return done(null, false, "hola");
                 }
                 console.log("Si correo");
-                // Match password
-                bcrypt.compare(password, user.password, (err, isMatch) => {
+                bcrypt.compare(password, user.password, (err, isMatch) => { //Verifica si la contraseña coincide
                     if(err) throw err;
                     if(isMatch){
                         console.log("Si contraseña");

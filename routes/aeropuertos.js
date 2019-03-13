@@ -3,6 +3,12 @@ const router = express.Router();
 const db = require('../config/database');
 const Aeropuerto = require('../models/Aeropuerto');
 const Pista = require('../models/Pista');
+const Pasaje = require('../models/Pasaje');
+const Pasajero = require('../models/Pasajero');
+const Telefono = require('../models/Telefono');
+const Tarifa = require('../models/Tarifa');
+const Ruta = require('../models/Ruta');
+const Escala = require('../models/Escala');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
@@ -10,18 +16,17 @@ const Op = Sequelize.Op;
 
 router.get('/', async  (req, res) =>  {
     let aeropuertos = await Aeropuerto.findAll();
-    console.log(aeropuertos);
     res.render('aeropuerto/aeropuertos', {aeropuertos} );
 }); 
 
-router.get('/pistas/:dato', async  (req, res) =>  { //buscar las pistas de un aeropuerto
+router.get('/pistas/:dato', async  (req, res) =>  {         // Buscar las pistas de un aeropuerto
     const { dato } = req.params;
     let aeropuertos = await Aeropuerto.findAll({
-        attributes: ['IATA', 'nombre'],                     //datos a traer de la tabla Aeropuertos
+        attributes: ['IATA', 'nombre'],                     // Datos a traer de la tabla Aeropuertos
         where: {IATA: dato},
         include: [{ 
             model: Pista,
-            attributes: ['nPista', 'distPista'],                // datos a traer de la tabla pistas
+            attributes: ['nPista', 'distPista'],            // Datos a traer de la tabla Pistas
             require: true                                   // INNER JOIN TABLE AEROPUERTO Y PISTAS
         }]
     });
@@ -30,10 +35,10 @@ router.get('/pistas/:dato', async  (req, res) =>  { //buscar las pistas de un ae
 });
 
 router.get('/prueba', async  (req, res) =>  {
-    let aeropuertos = await Pista.findAll({
+    let aeropuertos = await Ruta.findAll({
         include: [{ 
-            model: Aeropuerto,
-            require: true                                  
+            model: Escala,
+            required: true                                  
         }]
     });
     console.log(aeropuertos)

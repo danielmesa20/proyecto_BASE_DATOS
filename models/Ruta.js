@@ -1,11 +1,11 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
-const Vuelo = require('../models/Vuelo');
+const AvionRuta = require('../models/AvionRuta');
 
 const Ruta = db.define('Rutas', {
     nRuta:{
         type: Sequelize.INTEGER,
-        autoincrement:true,
+        autoIncrement:true,
         allowNull: false,
         primaryKey: true
     },
@@ -24,11 +24,7 @@ const Ruta = db.define('Rutas', {
     pBase:{
         type: Sequelize.FLOAT,
         allowNull: false
-    },
-    escala:{
-        type: Sequelize.INTEGER,
     }
 });
-
 
 module.exports = Ruta;

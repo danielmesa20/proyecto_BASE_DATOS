@@ -8,18 +8,26 @@
                         <h5 class="card-title text-center ">Número de vuelo: {{ numeroVuelo }} </h5>
                         <p class="m-2">Fecha salida programada: {{ fechaSalida }} </p>
                         <p class="m-2">Fecha llegada programada: {{ fechaLlegada }} </p>
-                        <p class="m-2">Origen: {{ Ruta.origen }} </p>
-                        <p class="m-2">Destino: {{ Ruta.destino }} </p>
+                        <p class="m-2">Origen: {{  AvionesRuta.Ruta.origen }} </p>
+                        <p class="m-2">Destino: {{  AvionesRuta.Ruta.destino }} </p>
+                            {{#each  AvionesRuta.Ruta.Escalas }}
+                            <p class="m-2">Escala: {{ pais }}, {{ ciudad }}</p>
+                            {{else}}
+                            <p class="m-2">Sin escala</p>
+                            {{/each}}
                         {{#if fechaRealSalida}}
                         <p class="m-2">Fecha real salida: {{ fechaRealSalida }} </p>
                         {{/if}}
                         {{#if fechaRealLlegada}}
                         <p class="m-2">Fecha real llegada: {{ fechaRealLlegada }} </p>
                         {{/if}}
-                        <p class="m-2">Asientos disp Clase Economica: {{ Avione.cAsientosCE }} </p>
-                        <p class="m-2">Asientos disp Primera Clase: {{ Avione.cAsientosPC }} </p>
+                        <p class="m-2">Asientos disp Clase Economica: {{  AvionesRuta.Avione.cAsientosCE }} </p>
+                        <p class="m-2">Asientos disp Primera Clase: {{  AvionesRuta.Avione.cAsientosPC }} </p>
                         <div class="card text-center">
                              <a href="/vuelos/datos/{{ numeroVuelo }}" class="btn btn-secondary">Pasajeros</a>
+                        </div>
+                         <div class="card text-center">
+                             <a href="/vuelos/comprar/{{ numeroVuelo }}" class="btn btn-danger">Comprar</a>
                         </div>
                     </div>
                 </div>

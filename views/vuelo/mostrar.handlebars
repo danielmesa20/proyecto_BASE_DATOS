@@ -1,4 +1,4 @@
-<h2 class="text-center m-4">Vuelos</h2>
+<h2 class="text-center m-4">Vuelo</h2>
 <div class="container p-2">
     <div class="row">
         {{#each datos}}
@@ -10,23 +10,21 @@
                         <p class="m-2">Fecha llegada programada: {{ fechaLlegada }} </p>
                         <p class="m-2">Origen: {{ Ruta.origen }} </p>
                         <p class="m-2">Destino: {{ Ruta.destino }} </p>
+                        {{#each Ruta.Escalas}}
+                            <p class="m-2">Escala: {{ pais }}, {{ ciudad }} </p>
+                        {{else}}
+                            <p class="m-2">Escala: No aplica </p>
+                        {{/each}}
                         {{#if fechaRealSalida}}
                         <p class="m-2">Fecha real salida: {{ fechaRealSalida }} </p>
                         {{/if}}
                         {{#if fechaRealLlegada}}
                         <p class="m-2">Fecha real llegada: {{ fechaRealLlegada }} </p>
                         {{/if}}
-                         <div class="card text-center">
+                        <div class="card text-center">
                              <a href="/vuelos/comprar/{{ numeroVuelo }}" class="btn btn-secondary">Comprar</a>
                         </div>
                     </div>
-                </div>
-            </div>
-        {{else}}
-            <div class="com-me 4 mx-auto">
-                <div class="card card-body text-center">
-                    <p>No hay vuelos con esas especificaciones!</p>
-                    <a href="/vuelos/buscar">Buscar otro</a>
                 </div>
             </div>
         {{/each}}

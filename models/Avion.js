@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
-const Vuelo = require('../models/Vuelo');
+const AvionRuta = require('../models/AvionRuta');
 
 const Avion = db.define('Aviones', {
     matriculaAvion:{
@@ -78,8 +78,7 @@ const Avion = db.define('Aviones', {
     }
 });
 
-//Asociacion tabla Aviones y tabla Vuelos
-Avion.hasOne(Vuelo, { foreignKey: 'mAvion' } );
-Vuelo.belongsTo(Avion, { foreignKey: 'mAvion' } );
+Avion.hasMany(AvionRuta, {foreignKey: 'mAvion'});
+AvionRuta.belongsTo(Avion, {foreignKey: 'mAvion' }); 
 
 module.exports = Avion;

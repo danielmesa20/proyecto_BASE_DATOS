@@ -1,46 +1,21 @@
-<div class="container p-4">
+<h2 class="text-center m-4">Vuelos</h2>
+<div class="container p-2">
     <div class="row">
-        <div class="col-md-5 mx-auto">
-        <h1 class="text-center">Comprar un pasaje al vuelo {{ dato }} </h1>
-      
-        {{#each errors}}
-            <div class="error">
-            <p> {{ text }}</p>
+            <div class="col-md-4">
+                <div class="card text-justify">
+                    <div class="card-body">
+                        <h5 class="card-title text-center ">Número de vuelo: {{ datoVuelo.numeroVuelo }} </h5>
+                        <p class="m-2">Fecha salida: {{ datoVuelo.fechaSalida }} </p>
+                        <p class="m-2">Fecha llegada: {{ datoVuelo.fechaLlegada }} </p>
+                        <div class="form-group">
+                            <label for="sel1">Clase</label>
+                            <select class="form-control" id="clase" name="clase">
+                                <option>Primera Clase</option>
+                                <option>Clase Económica</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </div>
-        {{/each}}
-
-    <form action="/vuelos/buscar" method="POST">
-
-        <div class="form-group">
-            <label for="sel1">Origen</label>
-            <select class="form-control" id="origen" name="origen" value={{ origen }}> 
-                <option>Caracas</option>
-                <option>Miami</option>
-            </select>
-        </div>
-
-         <div class="form-group">
-            <label for="sel1">Destino</label>
-            <select class="form-control" id="destino" name="destino" value={{ destino }}>
-                <option>Caracas</option>
-                <option>Miami</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-              <label for="fechaS">Fecha salida</label>
-              <input id="dateS"  name="dateS" type="date" value="2008-03-08">
-        </div>
-
-         <div class="form-group">
-              <label for="fechaS">Fecha salida</label>
-              <input id="dateL"  name="dateL" type="date" value="2008-03-10">
-        </div>
-
-        <button type="submit" class="btn btn-danger  btn-lg btn-block">Buscar</button>
-       
-      </form>
-
-        </div>
     </div>
 </div>

@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
-const Vuelo = require('../models/Vuelo');
 const Pasajero = require('../models/Pasajero');
 
 const Pasaje = db.define('Pasajes', {
@@ -22,7 +21,7 @@ const Pasaje = db.define('Pasajes', {
     }
 });
 
-//Asociacion tabla Aeropuertos y tabla Pistas
+//Asociacion tabla Pasajeros y tabla Pasajes
 Pasajero.hasMany(Pasaje, {foreignKey: 'nCedula'});
 Pasaje.belongsTo(Pasajero, {foreignKey: 'nCedula' }); 
 
