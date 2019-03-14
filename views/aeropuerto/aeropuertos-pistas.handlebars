@@ -9,13 +9,13 @@
                         <p class="m-2">Nombre: {{ nombre }}</p>
                         <p class="text-center"><b>Pistas del aeropuerto</b></p>
                         {{#each Pistas}}
-                        <p class="m-2">Número de pista: {{ id }}, Distancia: {{ distPista }} (m)</p>
+                            <p class="m-2">Número de pista: {{ nPista }}, Distancia: {{ distPista }} (m)</p>
+                        {{else}}
+                            <p class="m-2  mx-auto">Este aeropuerto no tiene pistas registradas</p>
                         {{/each}}
                     </div>
                 </div>
             </div>
-        {{else}}
-        <p class="m-2  mx-auto">Este aeropuerto no tiene pistas registradas</p>
         {{/each}}
         <div class="container p-4  text-center">
            <a href="/aeropuertos" class="btn btn-secondary"> Ver aeropuertos registrados </a>                

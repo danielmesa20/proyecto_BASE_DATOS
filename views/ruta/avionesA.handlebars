@@ -1,0 +1,19 @@
+<h2 class="text-center m-4">Aviones asignados</h2>
+<div class="container p-2">
+    <div class="row">
+        {{#each ruta}}
+            <div class="col-md-4">
+                <div class="card text-justify">
+                    <div class="card-body">
+                        <p class="m-2">nRuta: {{ nRuta }} </p>
+                        <p class="m-2">Origen: {{ origen }} </p>
+                        <p class="m-2">Destino: {{ destino }} </p>
+                        {{#each AvionesRutas}}
+                            <p class="m-2">Matricula Avión: {{ id }} </p>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>

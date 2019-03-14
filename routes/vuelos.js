@@ -19,6 +19,7 @@ router.get('/', async  (req, res) =>  {                                 // INNER
             include: [
                 {
                     model: AvionRuta,
+                    attributes:['id'],
                     required:true,
                         include: [
                             {
@@ -124,13 +125,8 @@ router.get('/crear', async (req,res) =>  {  // LEFT JOIN Tabla Rutas y tabla Esc
                 attributes: ['pais', 'ciudad'],     
             }
         ]   
-    })
-
-    let aviones = await Avion.findAll({
-        attributes: ['matriculaAvion','distDespegue']
     });
-
-    console.log(rutas);
+    let aviones;
     res.render('vuelo/crear', { rutas, aviones } );
 }); 
 

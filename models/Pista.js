@@ -5,8 +5,8 @@ const Aeropuerto = require('../models/Aeropuerto');
 const Pista = db.define('Pistas', {
     nPista:{
         type: Sequelize.INTEGER,
-        allowNull: false,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement:true,
     },
     distPista:{
         type: Sequelize.FLOAT,

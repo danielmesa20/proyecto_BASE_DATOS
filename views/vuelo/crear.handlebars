@@ -37,16 +37,21 @@
                     <input id="dateL"  name="dateL" type="date" value="2019-04-10">
                 </div>
 
-                 <div class="form-group">
-                        <label for="sel1">Aviones Disponibles</label>
-                        <select class="form-control" id="avion" name="avion">
-                            {{#each aviones }}
-                                <option> Matricula: {{matriculaAvion}}, distancia de despegue: {{ distDespegue }} (m) </option>
-                            {{/each}}
-                        </select>
-                </div>
+                {{#if aviones}}
+                    <div class="form-group">
+                            <label for="sel1">Aviones Disponibles</label>
+                            <select class="form-control" id="avion" name="avion">
+                                {{#each aviones }}
+                                    <option> Matricula: {{matriculaAvion}}, distancia de despegue: {{ distDespegue }} (m) </option>
+                                {{/each}}
+                            </select>
+                    </div>
+                    <button type="submit" class="btn btn-danger  btn-lg btn-block">Crear</button>
+                {{else}}
+                     <a href="/vuelos/aux/{{ numeroVuelo }}" class="btn btn-secondary">Comprar</a>
+                {{/if}}
 
-                <button type="submit" class="btn btn-danger  btn-lg btn-block">Crear</button>
+                
             
             </form>
 

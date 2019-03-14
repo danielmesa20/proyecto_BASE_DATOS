@@ -1,34 +1,47 @@
 <div class="container p-4 text-center">
-    <h1>Editar datos ruta</h1>
+    <h1>Modificar datos de la ruta</h1>
+     {{#each errors}}
+        <div class="error">
+          <p>{{text}}</p>
+        </div>
+      {{/each}}
     <div class="row">
         <div class="col-md-4 mx-auto">
             <div class="card">
                 <div class="card-body">
-                    <form action="/aviones/edit/{{ ruta.nRuta }}" method="POST">
+                    {{#each ruta}}
+                    <form action="/rutas/edit/{{ nRuta }}" method="POST">
                         <p>Número de Ruta</p>
                         <div class="form-group">
-                            <input type="number" value="{{ ruta.nRuta }}" class="form-control" name="nRuta" disabled>
+                            <input type="number" value="{{ nRuta }}" class="form-control" name="nRuta" disabled>
                         </div>
                         <p>Origen</p>
                         <div class="form-group">
-                            <input type="text" value="{{ruta.origen}}" class="form-control" name="origen">
+                            <input type="text" value="{{origen}}" class="form-control" name="origen">
                         </div>
                         <p>destino</p>
                         <div class="form-group">
-                            <input type="text" value="{{ruta.destino}}" class="form-control" name="destino">
+                            <input type="text" value="{{destino}}" class="form-control" name="destino">
                         </div>
                         <p>Precio Base</p>
                          <div class="form-group">
-                            <input type="number" value="{{ruta.pBase}}" class="form-control" name="pBase">
+                            <input type="number" value="{{pBase}}" class="form-control" name="pBase">
                         </div>
-                        <p>Escala</p>
+                        {{#each Escalas}}
+                            <p>Pais de la escala</p>
+                            <div class="form-group">
+                                <input type="text" value="{{pais}}" class="form-control" name="escalapais" required>
+                            </div>
+                             <p>Ciudad de la escala</p>
+                            <div class="form-group">
+                                <input type="text" value="{{ciudad}}" class="form-control" name="escalaciudad" required>
+                            </div>
+                        {{/each}}
                         <div class="form-group">
-                            <input type="number" value="{{ruta.escala}}" class="form-control" name="escala">
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-success btn-block"> Actualizar </button>
+                            <button class="btn btn-success btn-block"> Modificar </button>
                         </div>
                     </form>
+                    {{/each}}
                 </div>
             </div>
         </div>

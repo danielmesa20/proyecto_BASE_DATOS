@@ -8,6 +8,8 @@ const passport = require('passport');
 var Store = require('express-session').Store; 
 const database = require('./config/database'); // Database Config
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
+const flash = require('connect-flash');
+const MySQLStore = require('express-mysql-session')(session);
 
 //iniciamos express
 const app = express();
@@ -30,10 +32,8 @@ const store = new SequelizeStore({
   checkExpirationInterval: 15 * 60 * 1000,
   expiration: 24 * 60 * 60 * 1000
 });
-app.use(
-  session({
+app.use(session({
     secret: process.env.SECRET,
-    key: process.env.KEY,
     resave: false,
     saveUninitialized: false,
     store
@@ -44,24 +44,30 @@ store.sync();
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 //Handlebars
 app.engine('handlebars', exphbs ({ 
     defaultLayout: 'main',
+    layoutsDir: path.join(app.get('views'),'layouts'),
     partialsDir: path.join(app.get('views'), 'partials'),
 }));
 
 app.set('view engine', 'handlebars');
 
-// Body Parser
-app.use(bodyParser.urlencoded({ extended:true }));
+/* // Body Parser
+app.use(bodyParser.urlencoded({ extended: true })); */
+
+app.use(express.urlencoded({extended: true}));
 
 // Set static folder
 app.use(express.static(path.join(__dirname,'public')));
 
 //Global variables
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   app.locals.user = req.user;
+  app.locals.success = req.flash('success');
+  app.locals.message = req.flash('message');
   next();
 });
 

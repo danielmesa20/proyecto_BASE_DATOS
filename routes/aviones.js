@@ -5,6 +5,8 @@ const Avion = require('../models/Avion');
 const Ruta = require('../models/Ruta');
 const Escala = require('../models/Escala');
 const AvionRuta = require('../models/AvionRuta');
+const Pista = require('../models/Pista');
+const Aeropuerto = require('../models/Aeropuerto');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
@@ -65,7 +67,6 @@ router.post('/add', async (req,res) =>  {
             where: { matriculaAvion }
         });
         if(Object.entries(error).length > 0){
-            console.log("hola");
             errors.push({text: 'Esa matricula de avión ya se encuentra registrada'})
             res.render('avion/add', {
                 errors, matriculaAvion, estado, vMaxima, vCruzero, fabricante, cargMaxE, modelo, 
@@ -79,7 +80,7 @@ router.post('/add', async (req,res) =>  {
                 cTripulacion, dispInternet: aux, dispEMedico: aux2, eliminado: 0
             });
             await avion.save();
-            return res.redirect('/aviones'); 
+            res.redirect('/aviones'); 
         }
     }
 });
@@ -94,6 +95,9 @@ router.post('/buscar', async (req, res) => {
     });
     if(Object.entries(aviones).length > 0){
         res.render('avion/buscarA', { aviones } );
+    }else{
+        req.flash('message', 'Esa matricula no se encuentra registrada');
+        res.render('avion/buscar');  
     }
 });
 
@@ -128,16 +132,19 @@ router.get('/edit/:matriculaAvion', async (req,res) =>{  // Muestra los datos de
     await Avion.update( newAvion, { 
         where:{ matriculaAvion } 
     });
+    req.flash('success', 'Se cambio el estado del avion correctamente');
     res.redirect('/aviones')
  });
 
- router.get('/asignarRuta', async (req,res) =>{ 
+ //ASIGNAR RUTA AVION
+ router.get('/asignarRuta', async (req,res) =>{
+
     let aviones = await Avion.findAll({ 
-        attributes:['matriculaAvion']
+        attributes:['matriculaAvion','distDespegue']
     });
 
     let rutas = await Ruta.findAll({ 
-        attributes:['nRuta', 'origen', 'destino'],
+        attributes:['nRuta', 'origen', 'destino','dist'],
         include:[{
             model:Escala,
             attributes:['pais','ciudad']
@@ -149,7 +156,7 @@ router.get('/edit/:matriculaAvion', async (req,res) =>{  // Muestra los datos de
 
 router.post('/asignarRuta', async  (req, res) =>  {  
 
-    const  {ruta, avion } = req.body;
+    const  {ruta, avion} = req.body;
     let errors = [];
 
     let n = ' '; let p = false;
@@ -160,14 +167,29 @@ router.post('/asignarRuta', async  (req, res) =>  {
         else
             p=true;
     }
-    
-    let verificar = await  AvionRuta.findAll({
+    //n: numero de ruta, avion. matricula del avión
+
+    let verificar = await  AvionRuta.findAll({ //Verificar si ese avión ya tiene dicha ruta asignada
         where:{ ruta: n, mAvion: avion }
     });
 
-    console.log(verificar);
+    let verificar2 = await Aeropuerto.findAll({
+        include:[{
+            model: Pista,
+            attributes:['distPista']
+        }],
+        where: {pais: 'Venezuela'}
+    })
 
-    if(verificar){
+    let verificar3 = await Avion.findOne({
+        where: {matriculaAvion: avion}
+    })
+
+    console.log(verificar2[0].IATA);
+    console.log(verificar3.distDespegue);
+ 
+    /* 
+    if(Object.entries(verificar).length > 0){
         errors.push({text: 'Esa ruta ya esta asignada a ese avión'});
         res.redirect('/aviones/asignarRuta');
     }else{
@@ -177,7 +199,8 @@ router.post('/asignarRuta', async  (req, res) =>  {
         });
         await dato.save(); 
         res.redirect('/aviones/asignarRuta');     
-    }
+    } 
+    */
 });
 
 module.exports = router;

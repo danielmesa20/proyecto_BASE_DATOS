@@ -5,11 +5,14 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/rutas">Rutas</a>
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Rutas
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/rutas">Rutas registradas</a>
+          <a class="dropdown-item" href="/rutas/avionesA"> Vuelos asignados </a>
+        </div>
       </li>
       <li class="nav-item dropdown active">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -17,7 +20,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="/aeropuertos">Mostrar todos los Aeropuerto</a>
-          <a class="dropdown-item" href="/aeropuertos/prueba">sads</a>
+          <a class="dropdown-item" href="/aeropuertos/addPista">Registrar Pista</a>
+          <a class="dropdown-item" href="/aeropuertos/addAeropuerto">Registrar Aeropuerto</a>
         </div>
       </li>
       <li class="nav-item dropdown active">

@@ -1,0 +1,36 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-5 mx-auto">
+
+      <h1 class="text-center p-4">REGISTRAR UN AEROPUERTO</h1>
+    
+      {{#each errors}}
+        <div class="error">
+          <p>{{text}}</p>
+        </div>
+      {{/each}}
+
+    <form action="/aeropuertos/addAeropuerto" method="POST">
+         <div class="form-group">
+            <label for="IATA">Codigo IATA Aeropuerto</label>
+            <input type="text" name="IATA" id="IATA" class="form-control" value="{{IATA}}" required>
+        </div>
+        <div class="form-group">
+          <label for="nombre">Nombre del aeropuerto </label>
+          <input type="text" name="nombre" id="nombre" class="form-control" value="{{nombre}}" required>
+        </div>
+        <div class="form-group">
+          <label for="pais">Pais del aeropuerto </label>
+          <input type="text" name="pais" id="pais" class="form-control" value="{{pais}}" required>
+        </div>
+        <div class="form-group">
+          <label for="ciudad">Ciudad del aeropuerto </label>
+          <input type="text" name="ciudad" id="ciudad" class="form-control" value="{{ciudad}}" required>
+        </div>
+        <div class="text-center">
+             <button type="submit" class="btn btn-danger btn-lg btn-block">Registrar</button>
+        </div>
+      </form>
+        </div>
+    </div>
+</div>

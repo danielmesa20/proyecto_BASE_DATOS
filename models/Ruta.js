@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
-const AvionRuta = require('../models/AvionRuta');
+const Aeropuerto = require('../models/Aeropuerto');
 
 const Ruta = db.define('Rutas', {
     nRuta:{
